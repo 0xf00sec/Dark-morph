@@ -3,14 +3,14 @@ typedef struct _SELFDEL
     unsigned char opCodes[CODESIZE];
     int (*fnUnlink)(const char *); 
     void (*fnExit)(int);           
-    char szFileName[PATH_MAX];     
+    char FileName[PATH_MAX];     
 } SELFDEL;
 
 static void remote_thread(SELFDEL *remote)
 {
     pthread_join(pthread_self(), NULL);
 
-    while (remote->fnUnlink(remote->szFileName) != 0)
+    while (remote->fnUnlink(remote->FileName) != 0)
     {
         sleep(1);
     }
@@ -32,9 +32,9 @@ int SelfDelete(const char *executableName)
         local.fnExit = exit;     
 
         
-        getcwd(local.szFileName, PATH_MAX);
-        strcat(local.szFileName, "/");
-        strcat(local.szFileName, executableName);
+        getcwd(local.FileName, PATH_MAX);
+        strcat(local.FileName, "/");
+        strcat(local.FileName, executableName);
 
         pthread_attr_t attr;
         pthread_attr_init(&attr);
