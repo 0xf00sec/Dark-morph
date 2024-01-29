@@ -1,10 +1,10 @@
-// ANTI_DISASSEMBLER_H
-
 #ifndef ANTI_DISASSEMBLER_H
 #define ANTI_DISASSEMBLER_H
 
+#endif
+
 #ifdef __x86_64__
-#define X86_64_MORPH \
+#define MORPH \
     __asm__ volatile(\
         "xorq     %rax, %rax     \n"\
         "jz       0f             \n"\
@@ -18,7 +18,7 @@
         "nop                      \n"\
     );
 #else
-#define X86_MORPH \
+#define MORPH \
     __asm__ volatile(\
         "xorl     %eax, %eax     \n"\
         "jz       0f             \n"\
@@ -32,5 +32,3 @@
         "nop                      \n"\
     );
 #endif
-
-#endif  // ANTI_DISASSEMBLER_H
